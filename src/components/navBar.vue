@@ -5,7 +5,7 @@ const list = [
   {label: '项目',id:'project'},
   {label: '文章',id:'writing'},
   {label: '关于',id:'about'},
-  {label: 'GitHub↗',url:'https://github.com/your-username'},
+  {label: 'GitHub↗',url:'https://github.com/www12354jkl'},
 ]
 
 </script>
