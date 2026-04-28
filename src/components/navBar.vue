@@ -14,7 +14,7 @@ const list = [
   <!-- nav -->
   <nav class="fixed top-0 inset-x-0 z-40 flex justify-between items-center px-12 py-5
               border-b border-french-blue-400/10 bg-deep-twilight-200/70 backdrop-blur-xl">
-    <text class="text-white text-center font-bold">浮士德</text>
+    <p @click="useScrollTo('hero')" class="text-white text-center font-bold cursor-pointer">浮士德</p>
     <ul class="flex gap-8 list-none m-0 p-0" >
       <li class="text-sm text-sky-aqua-700 no-underline tracking-widest cursor-pointer transition-colors hover:text-light-cyan-900" v-for="(item, index) in list" :key="index">
         <a v-if="item.url" :href="item.url" target="_blank">{{item.label}}</a>

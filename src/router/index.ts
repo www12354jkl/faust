@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '../views/HomeView.vue'
+import {Article} from "@/model/Article.ts";
+import ArticleDetail from "@/views/ArticleDetail.vue";
 
 
 const router = createRouter({
@@ -9,9 +11,15 @@ const router = createRouter({
     {
       path: '/',
       component: HomeView,
-      name: 'home',
+    },
+    {
+      path: '/article/:id',
+      component: ArticleDetail,
     }
   ],
+  scrollBehavior(){
+    return { top:0 }
+  }
 })
 
 export default router

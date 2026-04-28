@@ -1,32 +1,65 @@
-{
-  "data": [
-    {
-      "id": 1,
-      "title": "文章标题一",
-      "type": "技术分类",
-      "time": 5,
-      "date": "2025-05"
-    },
-    {
-      "id": 2,
-      "title": "文章标题二",
-      "type": "技术分类",
-      "time": 6,
-      "date": "2023-02"
-    },
-    {
-      "id": 3,
-      "title": "文章标题三",
-      "type": "技术分类",
-      "time": 7,
-      "date": "2026-04"
-    },
-    {
-      "id": 4,
-      "title": "文章标题四",
-      "type": "技术分类",
-      "time": 10,
-      "date": "2026-05"
-    }
-  ]
-}
+[
+  {
+    "id": "vue3-composition-api",
+    "title": "Vue 3 Composition API 实战",
+    "date": "2025-01-15",
+    "category": "前端",
+    "readTime": 8,
+    "summary": "从 Options API 迁移到 Composition API 的完整思路，以及 setup 语法糖的实际使用场景。",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "Composition API 最大的改变是把逻辑从组件选项里解放出来，按功能聚合而不是按类型拆散。这对大型组件的可维护性影响很大。"
+      },
+      {
+        "type": "code",
+        "lang": "vue",
+        "label": "基础用法",
+        "content": "<script setup>\nimport { ref, computed } from 'vue'\n\nconst count = ref(0)\nconst double = computed(() => count.value * 2)\n\nfunction increment() {\n  count.value++\n}\n</script>\n\n<template>\n  <button @click=\"increment\">{{ count }} × 2 = {{ double }}</button>\n</template>"
+      },
+      {
+        "type": "text",
+        "content": "setup 语法糖省去了 return，所有在顶层声明的变量和函数都自动暴露给模板。这是目前推荐的写法。"
+      },
+      {
+        "type": "demo",
+        "label": "计数器 Demo",
+        "component": "CounterDemo"
+      },
+      {
+        "type": "code",
+        "lang": "javascript",
+        "label": "useCounter.js",
+        "content": "import { ref } from 'vue'\n\nexport function useCounter(initial = 0) {\n  const count = ref(initial)\n\n  function increment() { count.value++ }\n  function decrement() { count.value-- }\n  function reset()     { count.value = initial }\n\n  return { count, increment, decrement, reset }\n}"
+      },
+      {
+        "type": "text",
+        "content": "组合函数（Composables）是 Composition API 最重要的模式，本质上就是封装了响应式状态的普通函数，可以在多个组件之间复用。"
+      }
+    ]
+  },
+  {
+    "id": "spring-boot-jwt",
+    "title": "Spring Boot JWT 认证完整实现",
+    "date": "2024-12-20",
+    "category": "后端",
+    "readTime": 12,
+    "summary": "从零搭建基于 JWT 的无状态认证系统，包含登录、token 刷新与权限校验。",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "JWT 认证的核心是服务端不存 session，所有用户信息都编码在 token 里，每次请求携带 token，服务端验签后直接使用。"
+      },
+      {
+        "type": "code",
+        "lang": "java",
+        "label": "JwtUtil.java",
+        "content": "public class JwtUtil {\n    private static final String SECRET = \"your-secret-key\";\n    private static final long EXPIRATION = 86400000L; // 24h\n\n    public static String generateToken(String username) {\n        return Jwts.builder()\n            .setSubject(username)\n            .setIssuedAt(new Date())\n            .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))\n            .signWith(SignatureAlgorithm.HS256, SECRET)\n            .compact();\n    }\n\n    public static String parseToken(String token) {\n        return Jwts.parser()\n            .setSigningKey(SECRET)\n            .parseClaimsJws(token)\n            .getBody()\n            .getSubject();\n    }\n}"
+      },
+      {
+        "type": "text",
+        "content": "生产环境中 SECRET 应从环境变量读取，不要硬编码在代码里。token 过期时间视业务场景调整，敏感系统建议配合 refresh token 使用。"
+      }
+    ]
+  }
+]

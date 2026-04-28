@@ -4,7 +4,7 @@ import {useScrollTo} from "@/composables/useScrollTo.ts";
 
 <template>
   <!-- Hero -->
-  <section class="relative min-h-screen grid grid-cols-1 md:grid-cols-2 items-center px-12 pt-32 pb-16 overflow-hidden page-enter">
+  <section id="hero" class="relative min-h-screen grid grid-cols-1 md:grid-cols-2 items-center px-12 pt-32 pb-16 overflow-hidden page-enter">
     <div class="max-w-xl p-2 gap-6 flex flex-col mx-auto">
       <p class="text-turquoise-surf-600 font-xiaowei text-sm p-2">//HELLO, WORLD</p>
       <h1 class="font-display font-extrabold leading-[0.95] tracking-[-0.04em] text-white mb-6 text-[clamp(3.5rem,7vw,5.5rem)]">

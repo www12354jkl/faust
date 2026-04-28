@@ -1,21 +1,29 @@
-export class Article{
-    id: number
-    title: string
-    type: string
-    time: number
-    date: string
+import type { Block } from './Block' // 看你要不要把 Block 也单独定义
 
-    constructor({id, title, type, time, date}:{
-        id: number
+export class Article {
+    id: string
+    title: string
+    category: string
+    readTime: number
+    date: string
+    summary: string
+    blocks: Block[]
+
+    constructor({ id, title, category, readTime, date, summary, blocks }: {
+        id: string
         title: string
-        type: string
-        time: number
+        category: string
+        readTime: number
         date: string
+        summary: string
+        blocks: Block[]
     }) {
         this.id = id
         this.title = title
-        this.type = type
-        this.time = time
+        this.category = category
+        this.readTime = readTime
         this.date = date
+        this.summary = summary
+        this.blocks = blocks
     }
 }
