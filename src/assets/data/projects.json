@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "type": "WEB",
+      "name": "示例一",
+      "context": "这是第一条内容",
+      "language": ["Vue 3", "Spring Boot"]
+    },
+    {
+      "id": 2,
+      "type": "TOOL",
+      "name": "示例二",
+      "context": "这是第二条内容",
+      "language": ["Python"]
+    },
+    {
+      "id": 3,
+      "type": "EXPERIMENT",
+      "name": "示例三",
+      "context": "这是第三条内容",
+      "language": ["TypeScript", "Node.js"]
+    },
+    {
+      "id": 4,
+      "type": "APPLICATION",
+      "name": "示例四",
+      "context": "这是第四条内容",
+      "language": ["C#"]
+    }
+  ]
+}
