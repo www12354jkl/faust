@@ -32,7 +32,7 @@ import {useScrollTo} from "@/composables/useScrollTo.ts";
   inset: -2px;
   border-radius: 9999px;
   background: conic-gradient(from 0deg, #0f12f8, #2381fc, #00b4d8, #48cae4, #0f12f8);
-  animation: spin 8s linear infinite;
+  animation: spin 4s linear infinite;
 }
 @keyframes spin {
   to { transform: rotate(360deg); }

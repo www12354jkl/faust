@@ -11,6 +11,7 @@ useReveal()
       <p class="text-turquoise-surf-600 font-xiaowei text-sm p-2">//About</p>
       <p class="text-white font-bold text-4xl mb-12">关于</p>
     </div>
+
     <div data-reveal class="transition-all duration-700 ease-out grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
       <div class="space-y-4 text-[1.05rem] font-light text-sky-aqua-700 leading-[1.8]">
         <p>在这里写写代码，做做项目，顺便记录一些技术上的思考。</p>
