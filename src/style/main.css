@@ -95,6 +95,15 @@
     --color-light-cyan-900: #f4fcfe;
     --color-light-cyan: #caf0f8;
 
+
+    --color-page-bg:     #ffffff;
+    --color-surface:     #f4fcfe;
+    --color-surface-2:   #e9f9fc;
+    --color-border:      #caf0f8;
+    --color-text-body:   #010226;
+    --color-text-muted:  #023e8a;
+    --color-text-hint:   #0077b6;
+
     /*字体*/
     --font-huangyou: "QingKeHuangYou", "sans-serif";
     --font-xiaowei: "XiaoHei", "sans-serif";
