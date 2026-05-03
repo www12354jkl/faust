@@ -1,4 +1,4 @@
-import type { Block } from './Block' // 看你要不要把 Block 也单独定义
+import type { Block } from './Block'
 
 export class Article {
     id: string

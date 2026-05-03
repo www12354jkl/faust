@@ -1,64 +1,41 @@
 <script setup lang="ts">
-/**
- * 适配亮色主题说明：
- * 1. 标题由 text-white 改为 text-text-body。
- * 2. 辅助信息由 sky-aqua-700 改为 text-text-muted。
- * 3. 悬停效果：列表项背景微调至 var(--color-surface)，标题高亮至 french-blue-600。
- */
-import { reactive } from "vue";
 
-// 模拟数据结构
-const articles = reactive([
-  {
-    id: "1",
-    title: "深度探索 Vue 3 组合式 API 的设计哲学",
-    category: "Technical",
-    readTime: 8,
-    date: "2024-03-15"
-  },
-  {
-    id: "2",
-    title: "前端工程化：从零构建高效的开发工作流",
-    category: "Workflow",
-    readTime: 12,
-    date: "2024-02-28"
-  },
-  {
-    id: "3",
-    title: "响应式设计的未来：容器查询与逻辑属性",
-    category: "CSS",
-    readTime: 6,
-    date: "2024-01-10"
-  }
-]);
+
+import {useReveal} from "@/composables/useReveal.ts";
+
+import {getArticles} from "@/composables/useJson.js";
+const articles = getArticles();
+useReveal()
+
 
 // 模拟 Reveal 效果
 const revealClass = "opacity-0 translate-y-6 transition-all duration-700 ease-out";
+useReveal()
 </script>
 
 <template>
   <!-- Writing Section -->
-  <section id="writing" class="max-w-[1100px] mx-auto px-8 md:px-12 py-24 bg-page-bg">
+  <section id="writing" class="max-w-275 mx-auto px-8 md:px-12 py-24 bg-page-bg">
     <!-- Header -->
-    <div :class="['p-7 mb-4', revealClass]" style="opacity: 1; transform: translateY(0);">
-      <p class="text-turquoise-surf-600 font-xiaowei text-sm p-2 tracking-widest">// WRITING</p>
+    <div data-reveal :class="['p-7 mb-4', revealClass]">
+      <p class="text-turquoise-surf-500 font-xiaowei text-sm p-2 tracking-widest">// WRITING</p>
       <p class="text-text-body font-bold text-4xl">文章</p>
     </div>
 
     <!-- Article List -->
-    <div :class="['flex flex-col p-7', revealClass]" style="opacity: 1; transform: translateY(0);">
+    <div data-reveal :class="['flex flex-col p-7', revealClass]">
       <router-link
           v-for="item in articles"
           :key="item.id"
           :to="`/article/${item.id}`"
-          class="flex justify-between items-center group gap-4 py-6 px-4 no-underline border-t border-border/40 transition-all duration-300 hover:bg-surface hover:rounded-xl"
+          class="relative article_card flex justify-between items-center group gap-4 py-6 px-4 no-underline border-t border-border/40 transition-all duration-300"
       >
         <div class="flex flex-col gap-1">
           <p class="text-text-body font-semibold text-lg transition-colors group-hover:text-french-blue-600">
             {{ item.title }}
           </p>
           <p class="text-text-muted text-xs font-mono flex items-center gap-2">
-            <span class="text-turquoise-surf-600 font-bold uppercase">{{ item.category }}</span>
+            <span class="text-text-muted font-bold uppercase">{{ item.category }}</span>
             <span class="opacity-30">|</span>
             <span>{{ item.readTime }} min read</span>
           </p>
@@ -85,5 +62,24 @@ const revealClass = "opacity-0 translate-y-6 transition-all duration-700 ease-ou
 a {
   text-decoration: none;
   color: inherit;
+}
+.article_card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg,
+  var(--color-french-blue-500),
+  var(--color-turquoise-surf-500)
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.article_card:hover::after {
+  transform: scaleX(1);
 }
 </style>
