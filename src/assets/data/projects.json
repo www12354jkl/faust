@@ -2,29 +2,19 @@
   {
     "id": 1,
     "type": "WEB",
-    "name": "示例一",
-    "context": "这是第一条内容",
-    "language": ["Vue 3", "Spring Boot"]
+    "name": "图书管理系统",
+    "context": "我的第一个Java全栈项目",
+    "language": ["Vue 3", "Spring Boot"],
+    "url": "https://github.com/www12354jkl/my-first-vue-project",
+    "web": "https://www12354jkl.github.io/my-first-vue-project/"
   },
   {
     "id": 2,
-    "type": "TOOL",
-    "name": "示例二",
-    "context": "这是第二条内容",
-    "language": ["Python"]
-  },
-  {
-    "id": 3,
-    "type": "EXPERIMENT",
-    "name": "示例三",
-    "context": "这是第三条内容",
-    "language": ["TypeScript", "Node.js"]
-  },
-  {
-    "id": 4,
-    "type": "APPLICATION",
-    "name": "示例四",
-    "context": "这是第四条内容",
-    "language": ["C#"]
+    "type": "WEB",
+    "name": "个人主页",
+    "context": "我的个人主页",
+    "language": ["Vue3"],
+    "url": "",
+    "web": ""
   }
 ]

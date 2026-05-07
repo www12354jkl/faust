@@ -1,8 +1,13 @@
 <script setup lang="ts">
 
 import {useReveal} from "@/composables/useReveal.ts";
-import {getProjects} from "@/composables/useJson.ts";
-const projects = getProjects();
+import {jumpUrl} from "@/composables/useJumpUrl.ts";
+import {computed} from "vue";
+import {useContentStore} from "@/stores/useContentStore.ts";
+const contentStore = useContentStore();
+const projects = computed(() => {
+  return contentStore.projects;
+})
 
 const revealClass = "opacity-0 translate-y-6 transition-all duration-700 ease-out";
 useReveal()
@@ -21,7 +26,9 @@ useReveal()
       <div
           v-for="item in projects"
           :key="item.id"
-          class="project_card group"
+          class="project_card group cursor-pointer"
+          @click="jumpUrl(item.web)"
+
       >
         <div class="card_content h-full flex flex-col gap-4">
           <!-- Type Tag -->
@@ -47,9 +54,9 @@ useReveal()
                 {{i}}
               </span>
             </div>
-            <span class="text-xs font-semibold text-french-blue-500 hover:text-turquoise-surf-600 transition-colors cursor-pointer">
+            <a @click.stop :href="item.url" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-french-blue-500 hover:text-turquoise-surf-600 transition-colors cursor-pointer">
               GitHub ↗
-            </span>
+            </a>
           </div>
         </div>
       </div>

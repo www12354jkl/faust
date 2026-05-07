@@ -2,8 +2,15 @@
 import { ChevronLeft, Calendar, LucideClock5, User} from '@lucide/vue'
 import {useReveal} from "@/composables/useReveal.ts";
 import {useGoBack} from "@/composables/useGoBack.ts";
-import {getArticle} from "@/composables/useJson.ts";
-const article = getArticle();
+import {useRoute} from "vue-router";
+import {computed} from "vue";
+import {useContentStore} from "@/stores/useContentStore.ts";
+const route = useRoute()
+const contentStore = useContentStore()
+const article = computed(() => {
+  const id = route.params.id as string;
+  return contentStore.getArticleById(id);
+})
 
 
 useReveal()

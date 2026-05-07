@@ -2,9 +2,13 @@
 
 
 import {useReveal} from "@/composables/useReveal.ts";
+import {useContentStore} from "@/stores/useContentStore.ts";
+import {computed} from "vue";
 
-import {getArticles} from "@/composables/useJson.js";
-const articles = getArticles();
+const contentStore = useContentStore();
+const articles = computed(() => {
+  return contentStore.articles;
+})
 useReveal()
 
 

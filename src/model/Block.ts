@@ -16,6 +16,7 @@ interface DemoBlock {
     type: 'demo';
     component: string;
     label?: string;
+    isRunning?: boolean;
 }
 
 // 联合类型

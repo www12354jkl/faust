@@ -1,10 +1,28 @@
 <script setup lang="ts">
-import {getArticle} from "@/composables/useJson.ts";
 import {Code,Play} from "@lucide/vue"
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {useReveal} from "@/composables/useReveal.ts";
+import {useContentStore} from "@/stores/useContentStore.ts";
+import {computed, markRaw, reactive} from "vue";
+import CounterDemo from "@/components/article/demos/CounterDemo.vue";
+import VerifyInputDemo from "@/components/article/demos/VerifyInputDemo.vue";
+const route = useRoute()
 const router = useRouter()
-const article = getArticle();
+const contentStore = useContentStore()
+const article = computed(() => {
+  const id = route.params.id as string;
+  return contentStore.getArticleById(id);
+})
+const componentMap : Record<string, any> = {
+  CounterDemo : markRaw(CounterDemo),
+  VerifyInputDemo : markRaw(VerifyInputDemo),
+}
+
+const toggleDemo = (currentBlock: any) => {
+  if(currentBlock.type === 'demo'){
+    currentBlock.isRunning = !currentBlock.isRunning;
+  }
+}
 useReveal()
 </script>
 
@@ -30,7 +48,7 @@ useReveal()
       </div>
       <!--演示块-->
       <div v-else-if="block.type === 'demo'" class="my-16">
-        <div class="relative border-2 border-dashed border-slate-200 rounded-3xl p-12 flex flex-col items-center justify-center bg-slate-50/50 group hover:border-french-blue-500 transition-colors">
+        <div v-if="!block.isRunning" class="relative border-2 border-dashed border-slate-200 rounded-3xl p-12 flex flex-col items-center justify-center bg-slate-50/50 group hover:border-french-blue-500 transition-colors">
           <div class="absolute -top-3 px-4 py-1 bg-slate-900 text-white text-[10px] font-black rounded-full uppercase tracking-[0.2em] shadow-lg">
             交互演示
           </div>
@@ -44,9 +62,12 @@ useReveal()
             标识符: {{ block.component }}
           </p>
 
-          <button class="px-6 py-2 bg-white border border-slate-200 text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+          <button @click="toggleDemo(block)" class="px-6 py-2 bg-white border border-slate-200 text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-900 hover:text-white transition-all shadow-sm">
             运行组件
           </button>
+        </div>
+        <div v-else class="relative animate-in fade-in slide-in-from-bottom-4">
+          <component :is="componentMap[block.component]" />
         </div>
       </div>
     </div>
